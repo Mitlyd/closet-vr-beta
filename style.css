@@ -1,0 +1,181 @@
+/* =============================================
+   RESET Y ESTILOS BASE
+   ============================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #000; /* Fondo Negro total */
+    color: #fff; /* Texto Blanco */
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; font-family: 'Montserrat', sans-serif; transition: 0.3s; }
+
+/* El logo elegante */
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.logo span { color: #888; /* VR en Gris */ }
+
+/* =============================================
+   PANTALLA DE AUTENTICACIÓN (image_6.png)
+   ============================================= */
+#auth-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    position: fixed; /* Tapa todo hasta loguearse */
+    top: 0; left: 0;
+    z-index: 2000;
+}
+
+.auth-card {
+    background-color: #111; /* Un gris muy oscuro */
+    padding: 50px;
+    border-radius: 12px;
+    border: 1px solid #222;
+    text-align: center;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.auth-card h2 { font-size: 26px; font-weight: 700; margin: 15px 0 5px; }
+.auth-card p { color: #888; margin-bottom: 30px; }
+
+/* Inputs Modernos (como image_6.png) */
+.form-group { margin-bottom: 15px; text-align: left; }
+.auth-card input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #222;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 16px;
+}
+.auth-card input:focus { border-color: #888; outline: none; }
+
+/* Botón Grande Blanco (image_6.png) */
+.btn-primary-auth {
+    width: 100%;
+    padding: 12px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+.btn-primary-auth:hover { background-color: #ccc; }
+
+.switch-text { margin-top: 20px; font-size: 14px; color: #888; }
+.switch-text a { color: #fff; text-decoration: underline; font-weight: 600; }
+
+/* =============================================
+   TIENDA PRINCIPAL (Header & Nav PatPrimo Style)
+   ============================================= */
+.main-header {
+    background-color: #111;
+    position: sticky; top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #222;
+}
+
+.navbar {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links { display: flex; gap: 30px; }
+.nav-links a { font-weight: 600; font-size: 15px; text-transform: uppercase; padding: 10px 0; }
+.nav-links a:hover { color: #888; }
+
+/* Dropdown Semestres */
+.dropdown { position: relative; }
+.dropdown-content {
+    display: none; position: absolute;
+    top: 100%; left: 0;
+    background-color: #111;
+    min-width: 160px;
+    border: 1px solid #333; border-radius: 4px;
+    z-index: 100;
+}
+.dropdown-content li a { display: block; padding: 12px 20px; text-transform: none; font-weight: 400; }
+.dropdown-content li a:hover { background-color: #222; }
+.dropdown:hover .dropdown-content { display: block; }
+
+.nav-icons { display: flex; align-items: center; gap: 20px; font-size: 20px; }
+.nav-icons a:hover { color: #888; }
+
+.user-info { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #888; }
+.btn-logout-icon { color: #555; font-size: 18px; }
+.btn-logout-icon:hover { color: #ff4d4d; }
+
+/* =============================================
+   MAIN CONTENT & CATALOGO (`image_8.png`)
+   ============================================= */
+.main-content { padding: 40px 0; }
+
+.section-title {
+    font-size: 28px; font-weight: 700; text-align: center;
+    text-transform: uppercase; margin-bottom: 40px; color: #fff;
+}
+
+/* El Grid Profesional (repeating horizontal cards) */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Tarjeta de Producto (`image_8.png`) */
+.product-card {
+    background-color: #111;
+    border-radius: 8px;
+    border: 1px solid #222;
+    overflow: hidden;
+    transition: 0.3s;
+    text-align: left; /* Volvemos a alineación izquierda profesional */
+}
+.product-card:hover { transform: translateY(-5px); border-color: #444; }
+
+/* Imagen Grande (object-fit: cover es la clave) */
+.product-image-wrapper { width: 100%; height: 350px; overflow: hidden; }
+.product-card img {
+    width: 100%; height: 100%;
+    object-fit: cover; /* Cubre el espacio sin deformarse */
+}
+
+.product-info { padding: 20px; }
+.product-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 5px; text-transform: uppercase; }
+.product-card p { color: #888; font-size: 14px; margin-bottom: 15px; height: 42px; overflow: hidden; }
+
+/* Botones de Acción de la Tarjeta */
+.product-actions { display: flex; justify-content: space-between; gap: 10px; }
+.btn-add-cart {
+    flex: 1; padding: 10px;
+    background-color: #fff; color: #000;
+    border-radius: 4px; font-weight: 700; font-size: 14px; text-transform: uppercase;
+}
+.btn-add-cart:hover { background-color: #ccc; }
+
+.btn-add-fav {
+    padding: 10px 15px;
+    background-color: transparent; border: 1px solid #333;
+    color: #fff; border-radius: 4px; font-size: 18px;
+}
+.btn-add-fav:hover { background-color: #222; border-color: #555; color: #ff4d4d; }
