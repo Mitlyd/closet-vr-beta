@@ -88,6 +88,23 @@
             
             <div id="catalog-container" class="catalog-grid">
                 </div>
+
+            <section id="camera-section" class="container" style="display:none; text-align: center; margin-top: 20px;">
+            <h2 class="section-title">Probador Virtual 📸</h2>
+            <p>Posa para tu foto de perfil de moda VR</p>
+            
+            <div class="camera-container" style="position: relative; display: inline-block; margin-top: 15px;">
+                <video id="video" autoplay playsinline style="width: 100%; max-width: 500px; height: auto; border-radius: 15px; border: 5px solid #bd93f9; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transform: scaleX(-1); /* Efecto espejo */"></video>
+                
+                <button id="snap" class="btn-primary-auth" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: auto; padding: 10px 20px;">
+                    <i class="fa fa-camera"></i> Tomar Foto
+                </button>
+            </div>
+            <br>
+            <button class="btn-remove" onclick="cerrarCamara()" style="margin-top: 15px;">
+                <i class="fa fa-times"></i> Cerrar Cámara
+            </button>
+        </section>
         </main>
     </div>
 
