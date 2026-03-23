@@ -4,6 +4,7 @@
 
 const API_URL = "/api";
 let currentUser = null;
+let streamGlobal = null;
 
 // =============================================
 // INICIALIZACIÓN
@@ -260,4 +261,52 @@ async function actualizarContadorCarrito() {
 function logout() {
     currentUser = null;
     window.location.reload(); 
+}
+
+async function abrirCamara() {
+    if (!currentUser) return alert("¡Oye, vv! Inicia sesión para usar el probador.");
+
+    //  Ocultamos el catálogo y mostramos la sección de la cámara
+    document.getElementById('catalog-container').style.display = 'none';
+    document.getElementById('section-title').style.display = 'none'; // Ocultamos el título "Catálogo"
+    document.getElementById('camera-section').style.display = 'block';
+
+    const video = document.getElementById('video');
+
+    // Pedimos permiso al navegador para usar la cámara
+    try {
+        // 'getUserMedia' es la API  que enciende la cámara
+        const stream = await navigator.mediaDevices.getUserMedia({ 
+            video: { width: 1280, height: 720 }, // Resolución sugerida
+            audio: false // No necesitamos micrófono
+        });
+        
+        //  Guardamos el 'stream' y lo ponemos en el elemento <video>
+        streamGlobal = stream;
+        video.srcObject = stream;
+        video.play();
+        console.log("Cámara encendida con éxito, vv. ✨");
+
+    } catch (error) {
+        console.error("Error al acceder a la cámara:", error);
+        alert("¡Uff! No pude encender la cámara. Asegúrate de dar permisos en el candadito de la URL, vv. 🔒");
+        cerrarCamara(); // Volvemos al catálogo
+    }
+}
+
+function cerrarCamara() {
+    // Apagamos la cámara si está encendida
+    if (streamGlobal) {
+        streamGlobal.getTracks().forEach(track => track.stop()); // Detenemos el video
+        streamGlobal = null;
+    }
+
+    const video = document.getElementById('video');
+    video.srcObject = null; // Limpiamos el video
+
+    // 2. Volvemos a mostrar el catálogo
+    document.getElementById('camera-section').style.display = 'none';
+    document.getElementById('catalog-container').style.display = 'grid'; // O como lo tengas en CSS
+    document.getElementById('section-title').style.display = 'block';
+    loadPrendas(); // Recargamos las prendas por seguridad
 }
