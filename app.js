@@ -54,6 +54,35 @@ async function login() {
     }
 }
 
+
+
+
+async function register() {
+    const nombre = document.getElementById('register-name').value;
+    const email = document.getElementById('register-email').value;
+    const password = document.getElementById('register-password').value;
+
+    if (!nombre || !email || !password) return alert("Llena todos los campos para el registro, vv.");
+
+    try {
+        const response = await fetch(`${API_URL}/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nombre, email, password })
+        });
+        const data = await response.json();
+        
+        if (response.ok && data.status === "success") {
+            alert("✨ ¡Registro exitoso! Ya puedes iniciar sesión.");
+            toggleAuth(); // Te regresa al cuadro de Login
+        } else {
+            throw new Error(data.message || "Error al registrar usuario.");
+        }
+    } catch (error) {
+        alert("Registro fallido: " + error.message);
+    }
+}
+
 // =============================================
 // NAVEGACIÓN Y CARGA
 // =============================================
