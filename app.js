@@ -56,11 +56,10 @@ async function login() {
 
 
 
-
 async function register() {
-    const nombre = document.getElementById('register-name').value;
-    const email = document.getElementById('register-email').value;
-    const password = document.getElementById('register-password').value;
+    const nombre = document.getElementById('reg-nombre').value;
+    const email = document.getElementById('reg-email').value;
+    const password = document.getElementById('reg-password').value;
 
     if (!nombre || !email || !password) return alert("Llena todos los campos para el registro, vv.");
 
