@@ -5,6 +5,19 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+import os
+from flask import send_from_directory
+
+# Esta ruta sirve para que cuando abras el link principal, cargue tu HTML
+@app.route("/")
+def index():
+    return send_from_directory(".", "index.html")
+
+# Esta ruta sirve para que el HTML encuentre el style.css y el app.js
+@app.route("/<path:path>")
+def static_files(path):
+    return send_from_directory(".", path)
+
 # =============================================
 # 1. CATÁLOGO DE PRENDAS
 # =============================================
