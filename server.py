@@ -190,6 +190,31 @@ def eliminar_favoritos():
     finally:
         if conn: conn.close()
 
+
+# =============================================
+# 5. REGISTRO DE USUARIOS
+# =============================================
+@app.route("/api/register", methods=["POST"])
+def register():
+    data = request.json
+    conn = None
+    try:
+        conn = get_connection()
+        cur = conn.cursor()
+        # Insertamos el nuevo usuario en la tabla
+        cur.execute(
+            "INSERT INTO usuarios (nombre, email, password) VALUES (%s, %s, %s)", 
+            (data["nombre"], data["email"], data["password"])
+        )
+        conn.commit()
+        return jsonify({"status": "success", "message": "Usuario creado"}), 201
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+    finally:
+        if conn: conn.close()
+
+
+
 # --- ESTO SIEMPRE DEBE IR AL FINAL ---
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
